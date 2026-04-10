@@ -119,7 +119,7 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
         transition={{ duration: 0.35, ease: 'easeInOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           light
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
+            ? 'bg-white/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.05)] border-b border-gray-100'
             : 'bg-transparent'
         }`}
       >
@@ -165,7 +165,7 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="fixed left-0 right-0 top-[72px] bg-white shadow-xl border-t border-gray-100"
+                      className="fixed left-0 right-0 top-[72px] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.07)] border-t border-gray-100"
                       onMouseEnter={openProductMenu}
                       onMouseLeave={closeProductMenu}
                     >
@@ -292,7 +292,7 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-100 py-2"
+                      className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-[0_4px_16px_rgba(0,0,0,0.06)] border border-gray-100 py-2"
                     >
                       {languages.map((lang) => (
                         <button
@@ -346,7 +346,7 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
               className="absolute inset-0 bg-black/50"
               onClick={() => setIsMobileMenuOpen(false)}
             />
-            <motion.div className="absolute right-0 top-0 h-full w-[280px] bg-white shadow-xl">
+            <motion.div className="absolute right-0 top-0 h-full w-[280px] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.07)]">
               <div className="pt-20 px-6">
                 <nav className="space-y-2">
                   {/* Products in Mobile — collapsible dropdown */}

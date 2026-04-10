@@ -34,7 +34,7 @@ function ProductCard({ product }: { product: any }) {
           />
         )}
       </div>
-      <div className="p-6 text-center">
+      <div className="p-10 text-center">
         <h4 className="text-lg font-semibold text-gray-900 mb-1">
           {product.name}
           {product.badge && (
@@ -108,7 +108,7 @@ function CategorySection({ category }: { category: any; index?: number }) {
           {/* Direct Products */}
           {category.products && (
             <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-5% 0px' }}
@@ -147,7 +147,7 @@ function CategorySection({ category }: { category: any; index?: number }) {
                     <p className="text-gray-600 max-w-3xl">{sub.description}</p>
                   </div>
                   <motion.div
-                    className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                    className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-5% 0px' }}
@@ -237,7 +237,7 @@ export default function Products() {
       <motion.div
         animate={{ top: isNavbarHidden ? 0 : 72 }}
         transition={{ duration: 0.35, ease: 'easeInOut' }}
-        className="sticky z-40 bg-white border-b border-gray-100 shadow-sm"
+        className="sticky z-40 bg-white border-b border-gray-100 shadow-[0_1px_8px_rgba(0,0,0,0.05)]"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-1 py-4 overflow-x-auto">
@@ -280,7 +280,7 @@ export default function Products() {
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center px-6 py-3 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition-colors"
+            className="inline-flex items-center gap-2 h-11 px-6 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 text-sm"
           >
             Inquiry
             <ArrowRight className="ml-2 h-4 w-4" />

@@ -189,13 +189,13 @@ export default function About() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/products"
-                className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center h-11 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
               >
                 Browse Products
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center border border-white/20 hover:border-white/50 text-white font-semibold px-8 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center h-11 px-8 border border-white/20 hover:border-white/50 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
               >
                 Contact Us
               </Link>

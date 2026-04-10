@@ -136,14 +136,14 @@ export default function ContactUs() {
                 {card.internal ? (
                   <Link
                     to={card.href}
-                    className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm"
+                    className="inline-flex items-center justify-center h-11 px-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
                   >
                     {card.cta}
                   </Link>
                 ) : (
                   <a
                     href={card.href}
-                    className="inline-flex items-center justify-center border border-gray-200 hover:border-orange-400 hover:text-orange-500 text-gray-700 font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm"
+                    className="inline-flex items-center justify-center h-11 px-6 border border-gray-200 hover:border-orange-400 hover:text-orange-500 text-gray-700 font-semibold rounded-lg transition-all duration-200 text-sm"
                   >
                     {card.cta}
                   </a>

@@ -280,7 +280,7 @@ export default function PurchaseInquiry() {
             className="flex justify-center pt-2">
             <button
               type="submit"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-12 py-3 rounded-lg transition-colors text-sm tracking-wide"
+              className="h-11 px-12 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-200 text-sm tracking-wide"
             >
               Submit
             </button>

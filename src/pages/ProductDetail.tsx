@@ -99,13 +99,13 @@ export default function ProductDetail() {
               >
                 <Link
                   to={`/purchase-inquiry?product=${encodeURIComponent(product.name)}`}
-                  className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm"
+                  className="inline-flex items-center gap-2 h-11 px-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
                 >
                   Purchase Inquiry <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/products"
-                  className="inline-flex items-center gap-2 border border-white/20 hover:border-orange-500 text-gray-300 hover:text-orange-400 font-semibold px-6 py-3 rounded-full transition-colors text-sm"
+                  className="inline-flex items-center gap-2 h-11 px-6 border border-white/20 hover:border-orange-500 text-gray-300 hover:text-orange-400 font-semibold rounded-lg transition-all duration-200 text-sm"
                 >
                   All Products
                 </Link>
@@ -201,7 +201,7 @@ export default function ProductDetail() {
                 <motion.div
                   key={i}
                   variants={fadeUp} custom={i * 0.1} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                  className="bg-white border border-gray-200 hover:border-orange-400 rounded-2xl p-7 transition-all duration-200 hover:shadow-md text-center"
+                  className="bg-white border border-gray-200 hover:border-orange-400 rounded-2xl p-10 transition-all duration-200 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] text-center"
                 >
                   {v.image && (
                     <img
@@ -249,7 +249,7 @@ export default function ProductDetail() {
                 <motion.div
                   key={i}
                   variants={fadeUp} custom={i * 0.08} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                  className="group border border-gray-200 hover:border-orange-400 rounded-2xl p-7 transition-all duration-200 hover:shadow-md"
+                  className="group border border-gray-200 hover:border-orange-400 rounded-2xl p-10 transition-all duration-200 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
                 >
                   {f.highlight && (
                     <div className="text-3xl font-black text-orange-500 mb-4">{f.highlight}</div>
@@ -276,7 +276,7 @@ export default function ProductDetail() {
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm"
+                className="inline-flex items-center gap-2 h-11 px-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
               >
                 Contact us for full specifications <ArrowRight className="w-4 h-4" />
               </a>
@@ -305,7 +305,7 @@ export default function ProductDetail() {
                 <motion.div
                   key={i}
                   variants={fadeUp} custom={i * 0.02} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                  className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all"
+                  className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:border-gray-300 transition-all"
                 >
                   <p className="text-[11px] font-bold text-gray-900 mb-2 leading-snug">{spec.label}</p>
                   <p className="text-xs leading-relaxed text-orange-500">{spec.value}</p>
@@ -382,7 +382,7 @@ export default function ProductDetail() {
             </p>
             <Link
               to={`/purchase-inquiry?product=${encodeURIComponent(product.name)}`}
-              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-colors text-base"
+              className="inline-flex items-center gap-2 h-12 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-200 text-base"
             >
               Purchase Inquiry <ArrowRight className="w-5 h-5" />
             </Link>

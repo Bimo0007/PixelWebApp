@@ -102,7 +102,7 @@ export default function ProductSection({
                 {secondaryCta && (
                   <a
                     href="#"
-                    className="inline-flex items-center px-6 py-3 border-2 border-orange-500 text-orange-500 font-semibold rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                    className="inline-flex items-center h-11 px-6 border-2 border-orange-500 text-orange-500 font-semibold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-200"
                   >
                     {secondaryCta}
                   </a>
