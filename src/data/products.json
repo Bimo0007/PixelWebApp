@@ -1,0 +1,287 @@
+[
+  {
+    "id": "cpad",
+    "name": "CPad",
+    "description": "CPad redefines smart terminals for business with an innovative modular concept. The entire series includes a variety of sizes and designs, complemented by a rich ecosystem of magnetic accessories, allowing for flexible combinations to adapt to various business scenarios.",
+    "heroImage": "/images/cpad-hero.jpg",
+    "products": [
+      {
+        "id": "cpad",
+        "name": "CPad",
+        "badge": "New",
+        "description": "Smart Commercial Pad",
+        "tagline": "Seamless payment and service, in One PAD.",
+        "image": "/assets/cpad/1 Front view.png",
+        "detail": {
+          "heroTagline": "Seamless payment and service, in One PAD.",
+          "overview": "CPad PAY combines the power of a smart terminal with built-in payment capabilities, delivering a unified commerce experience for modern businesses of every size.",
+          "features": [
+            {
+              "title": "All-in-One Payment",
+              "highlight": "NFC+",
+              "description": "Accept bank cards, QR codes, NFC and e-wallets in a single compact device."
+            },
+            {
+              "title": "Modular Design",
+              "description": "Magnetic accessories allow flexible configurations to adapt to any business setup."
+            },
+            {
+              "title": "Smart OS",
+              "description": "Powered by Android with a rich ecosystem of business applications pre-installed."
+            }
+          ],
+          "specs": [
+            { "label": "Display", "value": "10.1\" FHD Touch" },
+            { "label": "OS", "value": "Android 11" },
+            { "label": "CPU", "value": "Octa-Core 2.0GHz" },
+            { "label": "RAM", "value": "4GB" },
+            { "label": "Storage", "value": "64GB" },
+            { "label": "Payment", "value": "NFC / MSR / IC Card / QR Code" },
+            { "label": "Connectivity", "value": "4G / Wi-Fi / Bluetooth 5.0" },
+            { "label": "Battery", "value": "5000mAh" }
+          ],
+          "scenarios": [
+            { "title": "Retail", "description": "Streamline checkout and customer service.", "image": "/images/cpad.jpg" },
+            { "title": "Restaurant", "description": "Table-side ordering and payment.", "image": "/images/cpad.jpg" },
+            { "title": "Hospitality", "description": "Guest check-in and service management.", "image": "/images/cpad.jpg" }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "interactive-display",
+    "name": "Interactive Display",
+    "description": "Experience responsive touch and HD screens in various sizes, perfect for retail, F&B, and more. Streamline service and enhance information delivery for your business's digital transformation.",
+    "heroImage": "/images/display-hero.jpg",
+    "products": [
+      {
+        "id": "flex-3",
+        "name": "FLEX 3",
+        "badge": "New",
+        "description": "Interactive Display",
+        "tagline": "Flexibility for endless options.",
+        "image": "/assets/flex/1-Front view.png",
+        "detail": {
+          "heroTagline": "Various Sizes, Unlimited Possibilities.",
+          "overview": "FLEX 3 delivers responsive touch and stunning HD clarity in multiple screen sizes, built for retail, F&B, healthcare and beyond.",
+          "variants": [
+            { "name": "18.5\"", "title": "Compact and Efficient", "description": "Perfect for tight counter spaces and small retail setups.", "image": "/images/display-hero.jpg" },
+            { "name": "22\"", "title": "Perfect Aspect Ratio", "description": "The sweet spot for retail POS and self-ordering.", "image": "/images/display-hero.jpg" },
+            { "name": "27\"", "title": "Large Screen for Details", "description": "The preferred choice for restaurant kitchen displays.", "image": "/images/display-hero.jpg" }
+          ],
+          "features": [
+            {
+              "title": "Bezel-less Display",
+              "highlight": "16mm",
+              "description": "Ultra-narrow 16mm bezel with a slim 17mm profile for a sleek, modern look."
+            },
+            {
+              "title": "FHD Resolution",
+              "highlight": "1080p",
+              "description": "1920×1080 FHD with 400 nits brightness and anti-fingerprint coating."
+            },
+            {
+              "title": "Powerful Performance",
+              "highlight": "8-Core",
+              "description": "Qualcomm Octa-Core CPU at 2.7GHz with 6nm manufacturing process."
+            }
+          ],
+          "specs": [
+            { "label": "Display Sizes", "value": "18.5\" / 22\" / 27\"" },
+            { "label": "Resolution", "value": "1920×1080 FHD" },
+            { "label": "Brightness", "value": "400 nits" },
+            { "label": "CPU", "value": "Qualcomm Octa-Core 2.7GHz" },
+            { "label": "RAM", "value": "8GB" },
+            { "label": "Storage", "value": "256GB" },
+            { "label": "Touch", "value": "10-point Multi-touch" },
+            { "label": "OS", "value": "Android 11" }
+          ],
+          "scenarios": [
+            { "title": "Self-Checkout", "description": "Speed up checkout with touch-enabled self-service.", "image": "/images/display-hero.jpg" },
+            { "title": "Kitchen Display", "description": "Crystal-clear order management for kitchen staff.", "image": "/images/display-hero.jpg" },
+            { "title": "Self-Ordering Kiosk", "description": "Intuitive menu browsing and order placement.", "image": "/images/display-hero.jpg" },
+            { "title": "Healthcare", "description": "Patient registration and information display.", "image": "/images/display-hero.jpg" }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mobile",
+    "name": "Mobile",
+    "description": "Over the years, Pixel mobile devices, being applicable to the retail, restaurant, logistics and manufacturing businesses, have helped business owners to accelerate their digital transformation in store operations.",
+    "heroImage": "/images/mobile-hero.jpg",
+    "subCategories": [
+      {
+        "name": "V Series",
+        "description": "V Series products integrate the functions of printing, barcode scanning, voice broadcast as well as touch screens, thus meeting merchants' needs in checkout, ordering, order receiving and management.",
+        "products": [
+          {
+            "id": "v3h",
+            "name": "V3H",
+            "badge": "New",
+            "description": "Smart Mobile Terminal",
+            "tagline": "Beyond the classics, slimmer, sleeker, and infinitely stylish.",
+            "image": "assets/v3h/Front view.png",
+            "detail": {
+              "heroTagline": "Beyond the classics, slimmer, sleeker, and infinitely stylish.",
+              "overview": "V3H embraces 3rd generation aesthetics — slimmer, sleeker, and infinitely stylish. Upgraded performance, versatile features, and Pixel OS 4.0 inside make it the ideal all-in-one mobile terminal for modern business.",
+              "highlights": [
+                {
+                  "label": "Design",
+                  "title": "Sleek and ergonomic design.",
+                  "description": "Redesigned with 3rd gen aesthetics for a more comfortable grip and a refined, modern profile."
+                },
+                {
+                  "label": "Finish",
+                  "title": "Modern metallic finish.",
+                  "description": "Premium metallic surface that looks as good as it performs — durable and business-ready."
+                },
+                {
+                  "label": "Display",
+                  "title": "Immersive visual experience.",
+                  "description": "Dive into a 4.75\" HDV display with 400 nits brightness for crisp, vivid visuals indoors and out."
+                }
+              ],
+              "features": [
+                {
+                  "title": "Octa-Core CPU",
+                  "highlight": "2.4 GHz",
+                  "description": "Octa-Core processor at 2.4 GHz tackles multitasking seamlessly — faster, smoother operations every shift."
+                },
+                {
+                  "title": "Ample Storage",
+                  "highlight": "4GB+64GB",
+                  "description": "4GB RAM + 64GB ROM for smooth AI performance and plenty of space for all your business apps and data."
+                },
+                {
+                  "title": "Upgraded Dual Printing",
+                  "highlight": "Dual",
+                  "description": "Upgraded dual printing capability with scratch-free receipt printing and high-speed label printing built in."
+                },
+                {
+                  "title": "NFC Payment",
+                  "highlight": "NFC",
+                  "description": "Built-in NFC for contactless payments — accept tap-to-pay transactions quickly and securely."
+                },
+                {
+                  "title": "Ultra-HD Camera",
+                  "description": "Ultra-HD camera for scanning, documentation, and customer-facing workflows with exceptional clarity."
+                },
+                {
+                  "title": "Pixel OS 4.0",
+                  "highlight": "OS 4.0",
+                  "description": "Born for business. Features Advanced Device Management, Smart OTA Scheduling, Anti-Virus, Smart Battery Algorithm, and a fully open rich ecosystem."
+                }
+              ],
+              "specs": [
+                { "label": "Display", "value": "4.75\" HDV, 400 nits" },
+                { "label": "OS", "value": "Pixel OS 4.0 (Android 11)" },
+                { "label": "CPU", "value": "Octa-Core 2.4 GHz" },
+                { "label": "RAM / ROM", "value": "4GB + 64GB (3GB + 32GB optional)" },
+                { "label": "Printer", "value": "High-speed Thermal, Dual Printing Capability" },
+                { "label": "Scanner", "value": "1D / 2D Barcode" },
+                { "label": "Camera", "value": "Ultra-HD" },
+                { "label": "Payment", "value": "NFC Contactless" },
+                { "label": "Fingerprint", "value": "Optional" },
+                { "label": "Connectivity", "value": "4G / Wi-Fi / Bluetooth / GPS" },
+                { "label": "Accessories", "value": "Cash Drawer Scanner, RFID Strap, Lanyard" }
+              ],
+              "scenarios": [
+                { "title": "Retail Checkout", "description": "Fast, accurate point-of-sale with NFC and barcode scanning.", "image": "/images/p3-family.jpg" },
+                { "title": "Restaurant Ordering", "description": "Tableside ordering with instant dual printing.", "image": "/images/p3-family.jpg" },
+                { "title": "Logistics & Delivery", "description": "Scan, track, and manage deliveries on the go.", "image": "/images/p3-family.jpg" }
+              ]
+            }
+          }
+         
+        ]
+      },
+      {
+        "name": "L Series",
+        "description": "Pixel L Series contains handheld computers which can read barcodes, RFID tags and contactless cards, with which you can enjoy an excellent mobility, and collect and manage a large amount of data efficiently.",
+        "products": [
+          {
+            "id": "l3",
+            "name": "L3",
+            "badge": "New",
+            "description": "Smart Mobile Terminal",
+            "tagline": "Efficiency unleashed from start to sale.",
+            "image": "/assets/L3/1-Front view.png"
+          }
+
+        ]
+      }
+     
+    ]
+  },
+  {
+    "id": "desktop",
+    "name": "Desktop",
+    "description": "Pixel desktop terminals combine powerful performance with elegant design, providing reliable solutions for businesses of all sizes. From compact counters to full-service stations, we have the right solution for you.",
+    "heroImage": "/images/desktop-hero.jpg",
+    "subCategories": [
+      {
+        "name": "D Series",
+        "description": "Pixel D Series desktop terminals deliver reliable performance for counter-based operations across retail, F&B, and service industries.",
+        "products": [
+          {
+            "id": "d3-pro",
+            "name": "D3 Pro",
+            "badge": "New",
+            "description": "Desktop Terminal",
+            "tagline": "Professional-grade performance.",
+            "image": "/assets/D3/Frontview .png",
+            "hoverImage": "/assets/D3/D3 PRO with UI.png"
+          }
+        ]
+      },
+      {
+        "name": "T Series",
+        "description": "Pixel T Series all-in-one touch terminals combine display and computing in a sleek unit, ideal for self-service and customer-facing applications.",
+        "products": [
+          {
+            "id": "t3",
+            "name": "T3 Family",
+            "badge": "New",
+            "description": "All-in-One Touch Terminal",
+            "tagline": "Touch-first design for modern business.",
+            "image": "/assets/T3/Frontview.png"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "accessories",
+    "name": "Accessories",
+    "description": "Complete your POS setup with our range of accessories. From printers to cash drawers, we have everything you need to run your business smoothly.",
+    "heroImage": "/images/accessories-hero.jpg",
+    "products": [
+      {
+        "id": "printer",
+        "name": "80MM Printer",
+        "description": "Receipt Printer",
+        "tagline": "Fast, reliable printing.",
+        "image": "/assets/Printer/Printer.png"
+      },
+      {
+        "id": "cash-drawer",
+        "name": "Max Cash Drawe",
+        "description": "POS Cash Drawer",
+        "tagline": "Secure cash management.",
+        "image": "/assets/Drawer/Drawer.png"
+      },
+      {
+        "id": "2D Handheld Scanner",
+        "name": "2D Handheld Scanner",
+        "description": "P2D Handheld Scanner",
+        "tagline": "----",
+        "image": "/assets/Scanner/download.png"
+      }
+    ]
+  }
+  
+]
