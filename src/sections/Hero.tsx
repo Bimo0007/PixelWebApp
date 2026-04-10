@@ -14,21 +14,9 @@ function DistributorPoster() {
         style={{ background: 'radial-gradient(ellipse at center, rgba(249,115,22,0.12) 0%, transparent 70%)' }}
       />
 
-      {/* Logo */}
+      {/* Wordmark */}
       <motion.div
-        className="relative z-10 flex items-center justify-center"
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <div className="w-32 h-32 md:w-44 md:h-44 lg:w-52 lg:h-52 bg-orange-500 rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-orange-500/30">
-          <span className="text-white font-black text-[80px] md:text-[110px] lg:text-[130px] leading-none tracking-tight" style={{ fontFamily: "'Nunito', sans-serif" }}>P</span>
-        </div>
-      </motion.div>
-
-      {/* Wordmark beneath the badge */}
-      <motion.div
-        className="mt-5 z-10"
+        className="z-10"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
