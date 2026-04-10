@@ -101,7 +101,7 @@ function ProductCard({ image, category, name, tagline, productId, features = [],
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
       className="group flex flex-col sm:flex-row"
     >
       {/* Image half */}
@@ -161,8 +161,8 @@ export default function HomeProductGrid() {
   const { language } = useLanguage();
   const tg = translations[language].productGrid;
 
-  const cpad    = productsData[0].products![0];
-  const flex3   = productsData[1].products![0];
+  const cpad    = productsData[0].products![0] as any;
+  const flex3   = productsData[1].products![0] as any;
   const mobile  = productsData[2] as any;
   const v3h     = mobile.subCategories[0].products[0];
   const l3      = mobile.subCategories[1].products[0];

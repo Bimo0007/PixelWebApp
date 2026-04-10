@@ -14,6 +14,7 @@ type Product = {
   badge?: string;
   description: string;
   image: string;
+  hoverImage?: string;
 };
 
 type ProductCategory = {

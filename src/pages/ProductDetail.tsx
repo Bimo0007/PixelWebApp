@@ -10,12 +10,12 @@ const fadeUp = {
   hidden: { opacity: 0, y: 36 },
   visible: (i = 0) => ({
     opacity: 1, y: 0,
-    transition: { duration: 0.65, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.65, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
   }),
 };
 const fadeIn = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' as const } },
 };
 
 function findProduct(id: string) {
@@ -116,7 +116,7 @@ export default function ProductDetail() {
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
+              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number], delay: 0.2 }}
               className="relative flex justify-center items-center"
             >
               <div className="absolute inset-0 rounded-full bg-orange-500/8 blur-[80px] scale-90" />

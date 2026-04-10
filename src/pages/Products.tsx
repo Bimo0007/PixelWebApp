@@ -51,7 +51,7 @@ function ProductCard({ product }: { product: any }) {
 }
 
 // Category Section Component
-function CategorySection({ category, index }: { category: any; index: number }) {
+function CategorySection({ category }: { category: any; index?: number }) {
   return (
     <motion.section
       id={category.id}
@@ -70,7 +70,7 @@ function CategorySection({ category, index }: { category: any; index: number }) 
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
                 className="text-4xl lg:text-5xl font-bold mb-6"
               >
                 {category.name}
@@ -79,7 +79,7 @@ function CategorySection({ category, index }: { category: any; index: number }) 
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ duration: 0.65, delay: 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.65, delay: 0.12, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
                 className="text-gray-400 text-lg leading-relaxed"
               >
                 {category.description}
@@ -89,7 +89,7 @@ function CategorySection({ category, index }: { category: any; index: number }) 
               initial={{ opacity: 0, x: 40, scale: 0.97 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true, margin: '-10% 0px' }}
-              transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
               className="relative"
             >
               <img
@@ -122,7 +122,7 @@ function CategorySection({ category, index }: { category: any; index: number }) 
                   key={product.id}
                   variants={{
                     hidden: { opacity: 0, y: 24 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
                   }}
                 >
                   <ProductCard product={product} />
@@ -140,7 +140,7 @@ function CategorySection({ category, index }: { category: any; index: number }) 
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-5% 0px' }}
-                  transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
                 >
                   <div className="mb-8">
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{sub.name}</h3>
@@ -161,7 +161,7 @@ function CategorySection({ category, index }: { category: any; index: number }) 
                         key={product.id}
                         variants={{
                           hidden: { opacity: 0, y: 20 },
-                          visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
+                          visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
                         }}
                       >
                         <ProductCard product={product} />
