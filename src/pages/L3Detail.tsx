@@ -316,12 +316,12 @@ export default function L3Detail() {
                 className="bg-[#111] border border-white/8 rounded-2xl p-8"
               >
                 <p className="text-gray-500 text-xs font-semibold tracking-widest uppercase mb-3">Ample Storage · Smooth AI</p>
-                <div className="flex items-end gap-3 mb-1">
-                  <span className="text-4xl font-black text-white">3GB</span>
-                  <span className="text-gray-600 text-xl font-bold mb-1">RAM</span>
-                  <span className="text-gray-700 text-2xl font-light mb-1">+</span>
-                  <span className="text-4xl font-black text-white">32GB</span>
-                  <span className="text-gray-600 text-xl font-bold mb-1">ROM</span>
+                <div className="flex flex-wrap items-end gap-x-3 gap-y-1 mb-1">
+                  <span className="text-[clamp(1.75rem,8vw,2.25rem)] font-black text-white leading-none">3GB</span>
+                  <span className="text-gray-600 text-base font-bold mb-0.5">RAM</span>
+                  <span className="text-gray-700 text-xl font-light mb-0.5">+</span>
+                  <span className="text-[clamp(1.75rem,8vw,2.25rem)] font-black text-white leading-none">32GB</span>
+                  <span className="text-gray-600 text-base font-bold mb-0.5">ROM</span>
                 </div>
                 <p className="text-gray-600 text-sm">4GB RAM + 64GB ROM optional</p>
               </motion.div>
@@ -398,7 +398,7 @@ export default function L3Detail() {
             className="mb-6"
           >
             <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-orange-500 mb-6">Accessories</p>
-            <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight whitespace-nowrap mb-6">
+            <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-6">
               Expanded functionality.
             </h2>
             <p className="text-gray-500 font-semibold text-2xl sm:text-3xl">3 compatible accessories.</p>

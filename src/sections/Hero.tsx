@@ -26,12 +26,27 @@ function DistributorPoster() {
         </div>
       </motion.div>
 
+      {/* Wordmark beneath the badge */}
+      <motion.div
+        className="mt-5 z-10"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+      >
+        <span
+          className="text-white text-[2.8rem] md:text-[3.6rem] font-black leading-none tracking-tight"
+          style={{ fontFamily: "'Nunito', sans-serif" }}
+        >
+          Pixel
+        </span>
+      </motion.div>
+
       {/* Text below logo */}
       <motion.div
-        className="mt-8 text-center z-10 px-4"
+        className="mt-6 text-center z-10 px-4"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+        transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
       >
         <p className="text-white/60 text-sm md:text-base uppercase tracking-widest mb-2">
           {t.proudToBe}
