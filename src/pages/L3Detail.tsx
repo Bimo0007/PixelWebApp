@@ -32,11 +32,6 @@ const featureCards = [
   { icon: <Fingerprint className="w-5 h-5 text-orange-500" />, label: 'Fingerprint (Optional)',     desc: 'Optional biometric authentication for secure, frictionless worker access.' },
 ];
 
-const accessories = [
-  { src: '/assets/Printer/Printer.png',  label: 'Receipt Printer' },
-  { src: '/assets/Drawer/Drawer.png',    label: 'Cash Drawer' },
-  { src: '/assets/Scanner/download.png', label: '2D Handheld Scanner' },
-];
 
 const osFeatures = [
   { title: 'Advanced Device Management', desc: 'Remote control and monitor all devices from a single dashboard.' },
@@ -390,56 +385,6 @@ export default function L3Detail() {
         </div>
       </section>
 
-      {/* ━━━━━━━━━━━━━━━━ 10. ACCESSORIES ━━━━━━━━━━━━━━━━ */}
-      <section className="bg-[#0a0a0a] py-12 sm:py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={fadeUp} custom={0} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="mb-6"
-          >
-            <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-orange-500 mb-6">Accessories</p>
-            <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-6">
-              Expanded functionality.
-            </h2>
-            <p className="text-gray-500 font-semibold text-2xl sm:text-3xl">3 compatible accessories.</p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-6 items-start">
-            {/* Left — video placeholder */}
-            <motion.div
-              variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            >
-              <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-[#141414] border border-white/6 flex flex-col items-center justify-center gap-4">
-                <div className="w-16 h-16 rounded-full border border-white/15 bg-white/5 flex items-center justify-center">
-                  <div className="w-0 h-0 border-t-[9px] border-b-[9px] border-l-[16px] border-t-transparent border-b-transparent border-l-white/50 ml-1" />
-                </div>
-                <p className="text-gray-600 text-[11px] font-semibold tracking-[0.15em] uppercase">Video Coming Soon</p>
-              </div>
-              <p className="text-gray-500 text-xs mt-6">*The appearance of products will be based on the final production version.</p>
-            </motion.div>
-
-            {/* Right — accessory cards */}
-            <motion.div
-              variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-              className="flex flex-wrap gap-6"
-            >
-              {accessories.map((acc) => (
-                <motion.div
-                  key={acc.label}
-                  variants={item}
-                  className="bg-[#141414] border border-white/6 rounded-xl p-4 flex flex-col hover:border-orange-500/30 transition-colors w-[160px]"
-                >
-                  <p className="text-white text-[11px] font-semibold leading-snug mb-3 text-center">{acc.label}</p>
-                  <div className="flex items-center justify-center min-h-[60px]">
-                    <img src={acc.src} alt={acc.label} className="max-h-16 object-contain" />
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* ━━━━━━━━━━━━━━━━ 11. PIXEL OS 4.0 ━━━━━━━━━━━━━━━━ */}
       <section className="bg-[#080808] py-14 sm:py-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -487,18 +432,14 @@ export default function L3Detail() {
           </motion.div>
 
           <motion.div
-            variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
           >
             {specCards.map((card) => (
-              <motion.div
-                key={card.label}
-                variants={item}
-                className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all"
-              >
+              <div key={card.label} className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all">
                 <p className="text-[11px] font-bold text-gray-900 mb-2 whitespace-pre-line leading-snug">{card.label}</p>
                 <p className="text-xs leading-relaxed whitespace-pre-line text-gray-900">{card.value}</p>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>

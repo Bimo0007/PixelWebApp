@@ -2,7 +2,6 @@ import Header from '../sections/Header';
 import Hero from '../sections/Hero';
 import HomeProductGrid from '../sections/HomeProductGrid';
 import ExperienceSection from '../sections/ExperienceSection';
-import StatsSection from '../sections/StatsSection';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
 
@@ -21,8 +20,6 @@ export default function Home() {
         {/* Digital store experience banner */}
         <ExperienceSection />
 
-        {/* Global stats */}
-        <StatsSection />
       </main>
 
       <Footer />

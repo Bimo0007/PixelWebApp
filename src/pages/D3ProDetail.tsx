@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
@@ -37,6 +38,26 @@ const highlights = [
   { title: 'More powerful, not just\nin performance.', desc: 'D3 PRO, coming with a Qualcomm platform, 4GB RAM + 64GB ROM memory, and fingerprint login for Pixel One ID service, will offer you improved user experience.' },
 ];
 
+/* 10 angle shots — label used as alt text */
+const galleryViews = [
+  { src: '/assets/D3/1-Front view.png',    label: 'Front View' },
+  { src: '/assets/D3/2-Rear view.png',     label: 'Rear View' },
+  { src: '/assets/D3/3-Right view.png',    label: 'Right View' },
+  { src: '/assets/D3/4-Left view.png',     label: 'Left View' },
+  { src: '/assets/D3/5-Top view.png',      label: 'Top View' },
+  { src: '/assets/D3/6-Bottom view.png',   label: 'Bottom View' },
+  { src: '/assets/D3/7-Front right.png',   label: 'Front Right' },
+  { src: '/assets/D3/8-Front left.png',    label: 'Front Left' },
+  { src: '/assets/D3/9-Back right.png',    label: 'Back Right' },
+  { src: '/assets/D3/10-Back left.png',    label: 'Back Left' },
+];
+
+const accessories = [
+  { src: '/assets/D3/acessories/Printer.png',    label: 'Receipt Printer' },
+  { src: '/assets/D3/acessories/2nd screen.png', label: '2nd Screen' },
+  { src: '/assets/D3/acessories/download.png',   label: '2D Handheld Scanner' },
+];
+
 const specCards: { label: string; value: string }[] = [
   { label: 'Product Model',    value: 'F3510' },
   { label: 'OS',               value: 'Pixel OS\n(based on Android 13)' },
@@ -60,6 +81,8 @@ const specCards: { label: string; value: string }[] = [
 
 /* ══════════════════════════════════════════════════════ */
 export default function D3ProDetail() {
+  const [selectedAcc, setSelectedAcc] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Header />
@@ -99,8 +122,8 @@ export default function D3ProDetail() {
               className="flex justify-center"
             >
               <img
-                src="/assets/D3/Frontview .png"
-                alt="D3 PRO"
+                src="/assets/D3/1-Front view.png"
+                alt="D3 PRO Front View"
                 className="w-full max-w-md object-contain drop-shadow-2xl"
               />
             </motion.div>
@@ -116,10 +139,10 @@ export default function D3ProDetail() {
             className="grid grid-cols-2 lg:grid-cols-4"
           >
             {[
-              { value: '15.6"',   label: 'FHD Thin-Bezel Display' },
+              { value: '15.6"',    label: 'FHD Thin-Bezel Display' },
               { value: '4GB+64GB', label: 'RAM + ROM',              orange: true },
               { value: 'Qualcomm', label: 'Hexa-Core Platform',     orange: true },
-              { value: 'LAN 1G',  label: 'Gigabit Network' },
+              { value: 'LAN 1G',   label: 'Gigabit Network' },
             ].map((stat) => (
               <motion.div key={stat.label} variants={item} className="py-7 px-4 sm:py-10 sm:px-6 text-center border-b border-r border-white/5 even:border-r-0 [&:nth-child(n+3)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0">
                 <p className={`text-2xl sm:text-3xl font-black mb-1.5 ${stat.orange ? 'text-orange-500' : 'text-white'}`}>{stat.value}</p>
@@ -183,15 +206,15 @@ export default function D3ProDetail() {
             >
               <img
                 src="/assets/D3/D3 PRO with UI.png"
-                alt="D3 PRO UI"
+                alt="D3 PRO with UI"
                 className="w-full max-w-lg object-contain drop-shadow-2xl rounded-xl"
               />
             </motion.div>
 
             <div className="flex flex-col gap-10">
               {[
-                { title: 'Cables Concealed', desc: 'Intentionally streamlined stand and base keep all cables hidden — a clean, professional setup every time.' },
-                { title: 'Qualcomm Platform', desc: 'Hexa-core processor up to 2.4GHz with 4GB RAM + 64GB ROM for seamless multitasking and fast response.' },
+                { title: 'Cables Concealed',      desc: 'Intentionally streamlined stand and base keep all cables hidden — a clean, professional setup every time.' },
+                { title: 'Qualcomm Platform',     desc: 'Hexa-core processor up to 2.4GHz with 4GB RAM + 64GB ROM for seamless multitasking and fast response.' },
                 { title: '15.6" Thin-Bezel FHD', desc: 'Crystal-clear 1920×1080 resolution with 10-point touch — built for the busiest business environments.' },
               ].map((f, i) => (
                 <motion.div
@@ -211,7 +234,72 @@ export default function D3ProDetail() {
         </div>
       </section>
 
-      {/* ━━━━━━━━━━━━━━━━ 5. EXTENDABLE MODULES ━━━━━━━━━━━━━━━━ */}
+      {/* ━━━━━━━━━━━━━━━━ 5. 360° GALLERY ━━━━━━━━━━━━━━━━ */}
+      <section className="bg-[#050505] py-14 sm:py-28 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            variants={fadeUp} custom={0} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            className="text-center mb-16"
+          >
+            <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-orange-500 mb-4">Design</p>
+            <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+              Every angle,<br />
+              <span className="text-gray-500 font-semibold text-2xl sm:text-3xl">engineered with intention.</span>
+            </h2>
+          </motion.div>
+
+          {/* Featured + grid layout */}
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-4 mb-4">
+            {/* Large featured — front view */}
+            <motion.div
+              variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+              className="bg-[#111] rounded-2xl border border-white/6 flex items-center justify-center p-10 aspect-square lg:aspect-auto lg:row-span-2"
+            >
+              <img
+                src="/assets/D3/7-Front right.png"
+                alt="D3 PRO Front Right"
+                className="w-full max-w-xs object-contain drop-shadow-2xl"
+              />
+            </motion.div>
+
+            {/* Top-right: rear + right */}
+            <motion.div
+              variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+              className="grid grid-cols-2 gap-4"
+            >
+              {galleryViews.slice(1, 5).map((v, i) => (
+                <motion.div
+                  key={v.label}
+                  variants={item}
+                  className="bg-[#111] rounded-2xl border border-white/6 flex flex-col items-center justify-center p-6 gap-3 hover:border-orange-500/25 transition-colors"
+                >
+                  <img src={v.src} alt={v.label} className="h-28 object-contain drop-shadow-lg" />
+                  <p className="text-gray-600 text-[10px] font-semibold tracking-widest uppercase">{v.label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Bottom row — 5 more angles */}
+          <motion.div
+            variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"
+          >
+            {galleryViews.slice(5).map((v) => (
+              <motion.div
+                key={v.label}
+                variants={item}
+                className="bg-[#111] rounded-2xl border border-white/6 flex flex-col items-center justify-center p-6 gap-3 hover:border-orange-500/25 transition-colors"
+              >
+                <img src={v.src} alt={v.label} className="h-24 object-contain drop-shadow-lg" />
+                <p className="text-gray-600 text-[10px] font-semibold tracking-widest uppercase">{v.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━ 6. EXTENDABLE MODULES ━━━━━━━━━━━━━━━━ */}
       <section className="bg-[#080808] py-14 sm:py-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -228,7 +316,7 @@ export default function D3ProDetail() {
           <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
               { title: '10" Customer Display', desc: 'Optional NFC & Tap on Glass to support SoftPOS payments. Plug-and-play, no assembly required.' },
-              { title: 'Secondary Display', desc: 'Connect a secondary display with a USB cable and offer the best interaction experience to your customers.' },
+              { title: 'Secondary Display',    desc: 'Connect a secondary display with a USB cable and offer the best interaction experience to your customers.' },
             ].map((m, i) => (
               <motion.div
                 key={m.title}
@@ -244,7 +332,7 @@ export default function D3ProDetail() {
         </div>
       </section>
 
-      {/* ━━━━━━━━━━━━━━━━ 6. PIXEL OS ━━━━━━━━━━━━━━━━ */}
+      {/* ━━━━━━━━━━━━━━━━ 7. PIXEL OS ━━━━━━━━━━━━━━━━ */}
       <section className="bg-[#080808] py-14 sm:py-28 overflow-hidden border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -278,7 +366,7 @@ export default function D3ProDetail() {
         </div>
       </section>
 
-      {/* ━━━━━━━━━━━━━━━━ 7. ACCESSORIES ━━━━━━━━━━━━━━━━ */}
+      {/* ━━━━━━━━━━━━━━━━ 8. ACCESSORIES ━━━━━━━━━━━━━━━━ */}
       <section className="bg-[#0a0a0a] py-12 sm:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -311,28 +399,28 @@ export default function D3ProDetail() {
               variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
               className="flex flex-wrap gap-6"
             >
-              {[
-                { src: '/assets/Printer/Printer.png',  label: 'Receipt Printer' },
-                { src: '/assets/Drawer/Drawer.png',    label: 'Cash Drawer' },
-                { src: '/assets/Scanner/download.png', label: '2D Handheld Scanner' },
-              ].map((acc) => (
-                <motion.div
-                  key={acc.label}
-                  variants={item}
-                  className="bg-[#141414] border border-white/6 rounded-xl p-4 flex flex-col hover:border-orange-500/30 transition-colors w-[160px]"
-                >
-                  <p className="text-white text-[11px] font-semibold leading-snug mb-3 text-center">{acc.label}</p>
-                  <div className="flex items-center justify-center min-h-[60px]">
-                    <img src={acc.src} alt={acc.label} className="max-h-16 object-contain" />
-                  </div>
-                </motion.div>
-              ))}
+              {accessories.map((acc) => {
+                const selected = selectedAcc === acc.label;
+                return (
+                  <motion.div
+                    key={acc.label}
+                    variants={item}
+                    onClick={() => setSelectedAcc(selected ? null : acc.label)}
+                    className={`border rounded-xl p-4 flex flex-col cursor-pointer transition-all duration-200 w-[160px] ${selected ? 'bg-white border-orange-400 shadow-md' : 'bg-[#141414] border-white/6 hover:border-orange-500/30'}`}
+                  >
+                    <p className={`text-[11px] font-semibold leading-snug mb-3 text-center ${selected ? 'text-gray-900' : 'text-white'}`}>{acc.label}</p>
+                    <div className="flex items-center justify-center min-h-[60px]">
+                      <img src={acc.src} alt={acc.label} className="max-h-24 object-contain" />
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ━━━━━━━━━━━━━━━━ 8. TECH SPECS ━━━━━━━━━━━━━━━━ */}
+      {/* ━━━━━━━━━━━━━━━━ 9. TECH SPECS ━━━━━━━━━━━━━━━━ */}
       <section className="bg-white py-14 sm:py-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -344,18 +432,14 @@ export default function D3ProDetail() {
           </motion.div>
 
           <motion.div
-            variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
           >
             {specCards.map((card) => (
-              <motion.div
-                key={card.label}
-                variants={item}
-                className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all"
-              >
+              <div key={card.label} className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all">
                 <p className="text-[11px] font-bold text-gray-900 mb-2 whitespace-pre-line leading-snug">{card.label}</p>
                 <p className="text-xs leading-relaxed whitespace-pre-line text-gray-900">{card.value}</p>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
@@ -82,6 +83,8 @@ const specCards: { label: string; value: string }[] = [
 
 /* ══════════════════════════════════════════════════════ */
 export default function T3Detail() {
+  const [selectedAcc, setSelectedAcc] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Header />
@@ -248,7 +251,7 @@ export default function T3Detail() {
             <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight whitespace-nowrap mb-6">
               Expanded functionality.
             </h2>
-            <p className="text-gray-500 font-semibold text-2xl sm:text-3xl">3 compatible accessories.</p>
+            <p className="text-gray-500 font-semibold text-2xl sm:text-3xl">1 compatible accessory.</p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-6 items-start">
@@ -269,21 +272,23 @@ export default function T3Detail() {
               className="flex flex-wrap gap-6"
             >
               {[
-                { src: '/assets/Printer/Printer.png',  label: 'Receipt Printer' },
-                { src: '/assets/Drawer/Drawer.png',    label: 'Cash Drawer' },
-                { src: '/assets/Scanner/download.png', label: '2D Handheld Scanner' },
-              ].map((acc) => (
-                <motion.div
-                  key={acc.label}
-                  variants={item}
-                  className="bg-[#141414] border border-white/6 rounded-xl p-4 flex flex-col hover:border-orange-500/30 transition-colors w-[160px]"
-                >
-                  <p className="text-white text-[11px] font-semibold leading-snug mb-3 text-center">{acc.label}</p>
-                  <div className="flex items-center justify-center min-h-[60px]">
-                    <img src={acc.src} alt={acc.label} className="max-h-16 object-contain" />
-                  </div>
-                </motion.div>
-              ))}
+                { src: '/assets/T3/acessories/2nd screen.png', label: '2nd Screen' },
+              ].map((acc) => {
+                const selected = selectedAcc === acc.label;
+                return (
+                  <motion.div
+                    key={acc.label}
+                    variants={item}
+                    onClick={() => setSelectedAcc(selected ? null : acc.label)}
+                    className={`border rounded-xl p-4 flex flex-col cursor-pointer transition-all duration-200 w-[160px] ${selected ? 'bg-white border-orange-400 shadow-md' : 'bg-[#141414] border-white/6 hover:border-orange-500/30'}`}
+                  >
+                    <p className={`text-[11px] font-semibold leading-snug mb-3 text-center ${selected ? 'text-gray-900' : 'text-white'}`}>{acc.label}</p>
+                    <div className="flex items-center justify-center min-h-[60px]">
+                      <img src={acc.src} alt={acc.label} className="max-h-24 object-contain" />
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
@@ -335,18 +340,14 @@ export default function T3Detail() {
           </motion.div>
 
           <motion.div
-            variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
           >
             {specCards.map((card) => (
-              <motion.div
-                key={card.label}
-                variants={item}
-                className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all"
-              >
+              <div key={card.label} className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all">
                 <p className="text-[11px] font-bold text-gray-900 mb-2 whitespace-pre-line leading-snug">{card.label}</p>
                 <p className="text-xs leading-relaxed whitespace-pre-line text-gray-900">{card.value}</p>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>

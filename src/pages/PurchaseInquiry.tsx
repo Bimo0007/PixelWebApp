@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useForm, useWatch } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
@@ -32,75 +35,106 @@ const industryOptions = [
   'Hospitality', 'Finance / Payments', 'Education', 'Government', 'Other',
 ];
 
-function SelectField({
-  label, options, value, onChange, required,
-}: {
-  label: string; options: string[]; value: string;
-  onChange: (v: string) => void; required?: boolean;
-}) {
-  return (
-    <div className="relative">
-      <select
-        required={required}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full appearance-none border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 bg-white focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all pr-10"
-      >
-        <option value="">{label}{required ? '*' : ''}</option>
-        {options.map((o) => <option key={o} value={o}>{o}</option>)}
-      </select>
-      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-    </div>
-  );
-}
+/* ─── Zod Validation Schema ─── */
+const inquirySchema = z.object({
+  quantity: z.string().min(1, 'Please select a quantity'),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  phone: z.string().min(6, 'Please enter a valid phone number'),
+  email: z.string().email('Please enter a valid email address'),
+  decisionFactor: z.string().min(1, 'Please select a decision factor'),
+  country: z.string().min(1, 'Please select a country'),
+  company: z.string().min(1, 'Company name is required'),
+  businessType: z.string().min(1, 'Please select a business type'),
+  companySize: z.string().min(1, 'Please select a company size'),
+  industry: z.string().min(1, 'Please select an industry'),
+  talkedToRep: z.enum(['yes', 'no'], { required_error: 'Please select an option' }),
+  repName: z.string().optional(),
+  notes: z.string().optional(),
+  agreePrivacy: z.boolean().refine((val) => val === true, {
+    message: 'You must agree to the privacy statement',
+  }),
+  agreeMarketing: z.boolean().optional(),
+}).superRefine((data, ctx) => {
+  // Conditionally validate repName if talkedToRep is "yes"
+  if (data.talkedToRep === 'yes' && (!data.repName || data.repName.trim() === '')) {
+    ctx.addIssue({
+      path: ['repName'],
+      code: z.ZodIssueCode.custom,
+      message: 'Representative name is required',
+    });
+  }
+});
 
-function InputField({
-  label, type = 'text', value, onChange, required,
-}: {
-  label: string; type?: string; value: string;
-  onChange: (v: string) => void; required?: boolean;
-}) {
-  return (
-    <input
-      type={type}
-      required={required}
-      placeholder={`${label}${required ? '*' : ''}`}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all"
-    />
-  );
+type InquiryFormValues = z.infer<typeof inquirySchema>;
+
+/* ─── Custom Form Fields with ForwardRef ─── */
+interface SelectFieldProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  label: string;
+  options: string[];
+  error?: string;
 }
+const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
+  ({ label, options, error, required, ...props }, ref) => (
+    <div className="w-full relative">
+      <div className="relative">
+        <select
+          ref={ref}
+          {...props}
+          className={`w-full appearance-none border ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200 focus:border-orange-400 focus:ring-orange-400/20'} rounded-lg px-4 py-3 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 transition-all pr-10`}
+        >
+          <option value="">{label}{required ? '*' : ''}</option>
+          {options.map((o) => <option key={o} value={o}>{o}</option>)}
+        </select>
+        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+      </div>
+      {error && <p className="absolute -bottom-5 left-1 text-red-500 text-[11px]">{error}</p>}
+    </div>
+  )
+);
+
+interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  error?: string;
+}
+const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
+  ({ label, error, required, ...props }, ref) => (
+    <div className="w-full relative">
+      <input
+        ref={ref}
+        placeholder={`${label}${required ? '*' : ''}`}
+        {...props}
+        className={`w-full border ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200 focus:border-orange-400 focus:ring-orange-400/20'} rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white focus:outline-none focus:ring-2 transition-all`}
+      />
+      {error && <p className="absolute -bottom-5 left-1 text-red-500 text-[11px]">{error}</p>}
+    </div>
+  )
+);
 
 export default function PurchaseInquiry() {
   const [searchParams] = useSearchParams();
   const productParam = searchParams.get('product') ?? '';
 
-  const [form, setForm] = useState({
-    quantity: '',
-    name: '',
-    phone: '',
-    email: '',
-    decisionFactor: '',
-    country: '',
-    company: '',
-    businessType: '',
-    companySize: '',
-    industry: '',
-    talkedToRep: '' as '' | 'yes' | 'no',
-    repName: '',
-    notes: '',
-    agreePrivacy: false,
-    agreeMarketing: false,
-  });
-
   const [submitted, setSubmitted] = useState(false);
 
-  const set = (key: keyof typeof form) => (val: string | boolean) =>
-    setForm((prev) => ({ ...prev, [key]: val }));
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<InquiryFormValues>({
+    resolver: zodResolver(inquirySchema),
+    defaultValues: {
+      talkedToRep: 'no',
+      agreePrivacy: false,
+      agreeMarketing: false,
+    },
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const talkedToRepValue = useWatch({ control, name: 'talkedToRep' });
+
+  const onSubmit = (data: InquiryFormValues) => {
+    console.log('Form data submitted:', data);
+    // Perform API call here
     setSubmitted(true);
   };
 
@@ -145,31 +179,31 @@ export default function PurchaseInquiry() {
         </motion.div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
 
           {/* Quantity */}
           <motion.div variants={fadeUp} custom={1} initial="hidden" animate="visible">
             <SelectField
               label="Quantity Demanded" options={quantityOptions}
-              value={form.quantity} onChange={set('quantity')} required
+              {...register('quantity')} required error={errors.quantity?.message}
             />
           </motion.div>
 
           {/* Name + Phone */}
           <motion.div variants={fadeUp} custom={2} initial="hidden" animate="visible"
-            className="grid sm:grid-cols-2 gap-4">
-            <InputField label="Name" value={form.name} onChange={set('name')} required />
-            <InputField label="Phone" type="tel" value={form.phone} onChange={set('phone')} required />
+            className="grid sm:grid-cols-2 gap-7 sm:gap-4">
+            <InputField label="Name" {...register('name')} required error={errors.name?.message} />
+            <InputField label="Phone" type="tel" {...register('phone')} required error={errors.phone?.message} />
           </motion.div>
 
           {/* Email + Decision factor */}
           <motion.div variants={fadeUp} custom={3} initial="hidden" animate="visible"
-            className="grid sm:grid-cols-2 gap-4">
-            <InputField label="Email" type="email" value={form.email} onChange={set('email')} required />
+            className="grid sm:grid-cols-2 gap-7 sm:gap-4">
+            <InputField label="Email" type="email" {...register('email')} required error={errors.email?.message} />
             <SelectField
               label="When deciding which product to use, I"
               options={decisionOptions}
-              value={form.decisionFactor} onChange={set('decisionFactor')} required
+              {...register('decisionFactor')} required error={errors.decisionFactor?.message}
             />
           </motion.div>
 
@@ -177,62 +211,64 @@ export default function PurchaseInquiry() {
           <motion.div variants={fadeUp} custom={4} initial="hidden" animate="visible">
             <SelectField
               label="Country" options={countryOptions}
-              value={form.country} onChange={set('country')} required
+              {...register('country')} required error={errors.country?.message}
             />
           </motion.div>
 
           {/* Company + Business type */}
           <motion.div variants={fadeUp} custom={5} initial="hidden" animate="visible"
-            className="grid sm:grid-cols-2 gap-4">
-            <InputField label="Company" value={form.company} onChange={set('company')} required />
+            className="grid sm:grid-cols-2 gap-7 sm:gap-4">
+            <InputField label="Company" {...register('company')} required error={errors.company?.message} />
             <SelectField
               label="Your business type" options={businessTypeOptions}
-              value={form.businessType} onChange={set('businessType')} required
+              {...register('businessType')} required error={errors.businessType?.message}
             />
           </motion.div>
 
           {/* Company Size + Industry */}
           <motion.div variants={fadeUp} custom={6} initial="hidden" animate="visible"
-            className="grid sm:grid-cols-2 gap-4">
+            className="grid sm:grid-cols-2 gap-7 sm:gap-4">
             <SelectField
               label="Company Size" options={companySizeOptions}
-              value={form.companySize} onChange={set('companySize')} required
+              {...register('companySize')} required error={errors.companySize?.message}
             />
             <SelectField
               label="Industry" options={industryOptions}
-              value={form.industry} onChange={set('industry')} required
+              {...register('industry')} required error={errors.industry?.message}
             />
           </motion.div>
 
           {/* Sales rep radio */}
           <motion.div variants={fadeUp} custom={7} initial="hidden" animate="visible"
-            className="flex flex-wrap items-center gap-6 py-1">
-            <p className="text-sm text-gray-700 font-medium">
-              Have you communicated with our sales reps before?
-            </p>
-            <div className="flex gap-5">
-              {(['yes', 'no'] as const).map((val) => (
-                <label key={val} className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="talkedToRep"
-                    value={val}
-                    checked={form.talkedToRep === val}
-                    onChange={() => set('talkedToRep')(val)}
-                    className="accent-orange-500 w-4 h-4"
-                  />
-                  <span className="text-sm text-gray-700 capitalize">{val === 'yes' ? 'Yes' : 'No'}</span>
-                </label>
-              ))}
+            className="py-1">
+            <div className="flex flex-wrap items-center gap-6">
+              <p className="text-sm text-gray-700 font-medium">
+                Have you communicated with our sales reps before?
+              </p>
+              <div className="flex gap-5">
+                {(['yes', 'no'] as const).map((val) => (
+                  <label key={val} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      value={val}
+                      {...register('talkedToRep')}
+                      className="accent-orange-500 w-4 h-4"
+                    />
+                    <span className="text-sm text-gray-700 capitalize">{val === 'yes' ? 'Yes' : 'No'}</span>
+                  </label>
+                ))}
+              </div>
             </div>
+            {errors.talkedToRep && <p className="text-red-500 text-[11px] mt-1">{errors.talkedToRep.message}</p>}
           </motion.div>
 
           {/* Rep name — conditional */}
-          {form.talkedToRep === 'yes' && (
+          {talkedToRepValue === 'yes' && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
               <InputField
                 label="Please tell us his/her name"
-                value={form.repName} onChange={set('repName')}
+                {...register('repName')}
+                error={errors.repName?.message}
               />
             </motion.div>
           )}
@@ -241,8 +277,7 @@ export default function PurchaseInquiry() {
           <motion.div variants={fadeUp} custom={8} initial="hidden" animate="visible">
             <textarea
               placeholder="Notes"
-              value={form.notes}
-              onChange={(e) => set('notes')(e.target.value)}
+              {...register('notes')}
               rows={4}
               className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all resize-y"
             />
@@ -251,24 +286,24 @@ export default function PurchaseInquiry() {
           {/* Checkboxes */}
           <motion.div variants={fadeUp} custom={9} initial="hidden" animate="visible"
             className="flex flex-col sm:flex-row gap-4 text-sm text-gray-600">
+            <div className="flex flex-col">
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  {...register('agreePrivacy')}
+                  className="accent-orange-500 mt-0.5 w-4 h-4 flex-shrink-0"
+                />
+                <span>
+                  I agree to{' '}
+                  <span className="text-orange-500 font-medium">Pixel Privacy Statement and Terms of Service.</span>
+                </span>
+              </label>
+              {errors.agreePrivacy && <p className="text-red-500 text-[11px] mt-1">{errors.agreePrivacy.message}</p>}
+            </div>
             <label className="flex items-start gap-2 cursor-pointer">
               <input
                 type="checkbox"
-                required
-                checked={form.agreePrivacy}
-                onChange={(e) => set('agreePrivacy')(e.target.checked)}
-                className="accent-orange-500 mt-0.5 w-4 h-4 flex-shrink-0"
-              />
-              <span>
-                I agree to{' '}
-                <span className="text-orange-500 font-medium">Pixel Privacy Statement and Terms of Service.</span>
-              </span>
-            </label>
-            <label className="flex items-start gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={form.agreeMarketing}
-                onChange={(e) => set('agreeMarketing')(e.target.checked)}
+                {...register('agreeMarketing')}
                 className="accent-orange-500 mt-0.5 w-4 h-4 flex-shrink-0"
               />
               <span>I'd like to receive more information from Pixel.</span>

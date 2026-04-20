@@ -6,13 +6,14 @@ import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
 import categoriesData from '../data/products.json';
+import type { Category, Product } from '../types/products';
 
-const categories = categoriesData as any[];
+const categories = categoriesData as Category[];
 
 const MotionLink = motion(Link);
 
 // Product Card Component
-function ProductCard({ product }: { product: any }) {
+function ProductCard({ product }: { product: Product }) {
   return (
     <MotionLink
       to={`/product/${product.id}`}
@@ -51,7 +52,7 @@ function ProductCard({ product }: { product: any }) {
 }
 
 // Category Section Component
-function CategorySection({ category }: { category: any; index?: number }) {
+function CategorySection({ category }: { category: Category; index?: number }) {
   return (
     <motion.section
       id={category.id}
@@ -117,7 +118,7 @@ function CategorySection({ category }: { category: any; index?: number }) {
                 visible: { transition: { staggerChildren: 0.08 } },
               }}
             >
-              {category.products.map((product: any) => (
+              {category.products.map((product) => (
                 <motion.div
                   key={product.id}
                   variants={{
@@ -134,7 +135,7 @@ function CategorySection({ category }: { category: any; index?: number }) {
           {/* Sub Categories */}
           {category.subCategories && (
             <div className="space-y-16">
-              {category.subCategories.map((sub: any, idx: number) => (
+              {category.subCategories.map((sub: SubCategory, idx: number) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 30 }}
@@ -156,7 +157,7 @@ function CategorySection({ category }: { category: any; index?: number }) {
                       visible: { transition: { staggerChildren: 0.07 } },
                     }}
                   >
-                    {sub.products.map((product: any) => (
+                    {sub.products.map((product) => (
                       <motion.div
                         key={product.id}
                         variants={{

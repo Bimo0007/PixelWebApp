@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Wifi, Bluetooth, CreditCard, Camera, Battery, Shield,
@@ -78,6 +79,8 @@ const specCards: { label: string; value: string; orange?: boolean }[] = [
 
 /* ══════════════════════════════════════════════════════ */
 export default function CPadDetail() {
+  const [selectedAcc, setSelectedAcc] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Header />
@@ -228,19 +231,31 @@ export default function CPadDetail() {
               <p className="text-gray-500 text-xs mt-6">*The appearance of products will be based on the final production version.</p>
             </motion.div>
 
-            {/* Right — single accessory card */}
+            {/* Right — accessory cards */}
             <motion.div
-              variants={fadeUp} custom={2} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-              className="bg-[#141414] border border-white/6 rounded-xl p-4 flex flex-col hover:border-orange-500/30 transition-colors w-[160px]"
+              variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+              className="flex flex-wrap gap-6"
             >
-              <p className="text-white text-[11px] font-semibold leading-snug mb-3 text-center">Multi-Function Base</p>
-              <div className="flex items-center justify-center min-h-[60px]">
-                <img
-                  src="/assets/cpad/acessories/Multi-Function Base.jpg"
-                  alt="Multi-Function Base"
-                  className="max-h-16 object-contain"
-                />
-              </div>
+              {[
+                { src: '/assets/cpad/acessories/Multi-Function Base.jpg', label: 'Multi-Function Base' },
+                { src: '/assets/cpad/acessories/Printer.png',             label: 'Receipt Printer' },
+                { src: '/assets/cpad/acessories/Shoulder Strap.png',      label: 'Shoulder Strap' },
+              ].map((acc) => {
+                const selected = selectedAcc === acc.label;
+                return (
+                  <motion.div
+                    key={acc.label}
+                    variants={item}
+                    onClick={() => setSelectedAcc(selected ? null : acc.label)}
+                    className={`border rounded-xl p-4 flex flex-col cursor-pointer transition-all duration-200 w-[160px] ${selected ? 'bg-white border-orange-400 shadow-md' : 'bg-[#141414] border-white/6 hover:border-orange-500/30'}`}
+                  >
+                    <p className={`text-[11px] font-semibold leading-snug mb-3 text-center ${selected ? 'text-gray-900' : 'text-white'}`}>{acc.label}</p>
+                    <div className="flex items-center justify-center min-h-[60px]">
+                      <img src={acc.src} alt={acc.label} className="max-h-24 object-contain" />
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
@@ -445,18 +460,17 @@ export default function CPadDetail() {
           </motion.div>
 
           <motion.div
-            variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
           >
             {specCards.map((card) => (
-              <motion.div
+              <div
                 key={card.label}
-                variants={item}
                 className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all"
               >
                 <p className="text-[11px] font-bold text-gray-900 mb-2 whitespace-pre-line leading-snug">{card.label}</p>
                 <p className="text-xs leading-relaxed whitespace-pre-line text-gray-900">{card.value}</p>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>

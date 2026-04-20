@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   CreditCard, Shield, Printer, Tag, Camera, Scan,
@@ -34,9 +35,9 @@ const featureCards = [
 ];
 
 const accessories = [
-  { src: '/assets/Printer/Printer.png',  label: 'Receipt Printer' },
-  { src: '/assets/Drawer/Drawer.png',    label: 'Cash Drawer' },
-  { src: '/assets/Scanner/download.png', label: '2D Handheld Scanner' },
+  { src: '/assets/v3h/acessories/download.png',  label: '2D Handheld Scanner' },
+  { src: '/assets/v3h/acessories/handstrap.png', label: 'Hand Strap' },
+  { src: '/assets/v3h/acessories/lanyard.png',   label: 'Lanyard' },
 ];
 
 const osFeatures = [
@@ -83,69 +84,61 @@ const specCards: { label: string; value: string; orange?: boolean }[] = [
 
 /* ══════════════════════════════════════════════════════════════════════ */
 export default function V3HDetail() {
+  const [selectedAcc, setSelectedAcc] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ 1. HERO ━━━━━━━━━━━━━━━━ */}
       <section className="relative min-h-[75vh] sm:min-h-screen pt-[72px] overflow-hidden">
-        <img src="/assets/v3h/Poster.jpg" alt="V3H" className="absolute inset-0 w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <img src="/assets/v3h/Poster.png" alt="V3H" className="absolute inset-0 w-full h-full object-cover object-center" />
 
         <div className="relative z-10 flex items-center min-h-[calc(75vh-72px)] sm:min-h-[calc(100vh-72px)]">
           <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-lg">
+            <div className="max-w-xl">
 
               <motion.p
                 variants={fadeUp} custom={0} initial="hidden" animate="visible"
-                className="text-orange-400 font-semibold text-base mb-3"
+                className="text-orange-500 font-semibold text-sm mb-2"
               >
                 Smart Mobile Terminal
               </motion.p>
 
-              <motion.h1
+              <motion.p
                 variants={fadeUp} custom={1} initial="hidden" animate="visible"
-                className="text-[52px] sm:text-[90px] lg:text-[140px] font-black text-white leading-none mb-4 -ml-1"
+                className="text-gray-900 text-2xl font-bold mb-4"
               >
-                V3H
+                Pixel V3 Family
+              </motion.p>
+
+              <motion.h1
+                variants={fadeUp} custom={2} initial="hidden" animate="visible"
+                className="text-[42px] sm:text-[56px] font-black text-gray-900 leading-tight mb-2"
+              >
+                Beyond the classics,
               </motion.h1>
 
               <motion.p
-                variants={fadeUp} custom={2} initial="hidden" animate="visible"
-                className="text-white/80 text-lg font-light mb-8"
+                variants={fadeUp} custom={3} initial="hidden" animate="visible"
+                className="text-gray-800 text-lg font-medium mb-8"
               >
-                Beyond the classics — slimmer, sleeker, and infinitely stylish.
+                unveiling a new era of digital experience.
               </motion.p>
 
-              {/* Row 1 — OS / DMP / Hyper Wi-Fi */}
-              <motion.div
-                variants={fadeUp} custom={3} initial="hidden" animate="visible"
-                className="flex flex-wrap gap-2 mb-2"
-              >
-                {[
-                  '/assets/v3h/Efficiency unleashed from start to sale/os.png',
-                  '/assets/v3h/Efficiency unleashed from start to sale/dmp.png',
-                  '/assets/v3h/Efficiency unleashed from start to sale/hyper-wifi-icon.png',
-                ].map((src) => (
-                  <div key={src} className="flex items-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-2 h-10">
-                    <img src={src} alt="" className="h-6 w-auto object-contain brightness-0 invert opacity-90" />
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* Row 2 — Android Enterprise / GMS / EMVCo */}
+              {/* Badges — single row */}
               <motion.div
                 variants={fadeUp} custom={4} initial="hidden" animate="visible"
                 className="flex flex-wrap gap-2"
               >
                 {[
-                  '/assets/v3h/Efficiency unleashed from start to sale/aer.png',
-                  '/assets/v3h/Efficiency unleashed from start to sale/gms.png',
-                  '/assets/v3h/Efficiency unleashed from start to sale/emvco-icon.png',
-                ].map((src) => (
-                  <div key={src} className="flex items-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-2 h-10">
-                    <img src={src} alt="" className="h-6 w-auto object-contain" />
+                  { src: '/assets/v3h/Efficiency unleashed from start to sale/os.png',              invert: true  },
+                  { src: '/assets/v3h/Efficiency unleashed from start to sale/dmp.png',             invert: true  },
+                  { src: '/assets/v3h/Efficiency unleashed from start to sale/hyper-wifi-icon.png', invert: true  },
+                  { src: '/assets/v3h/Efficiency unleashed from start to sale/gms.png',             invert: false },
+                ].map((b) => (
+                  <div key={b.src} className="flex items-center bg-white/60 backdrop-blur-sm border border-black/10 rounded-lg px-4 py-2.5 h-12">
+                    <img src={b.src} alt="" className={`h-8 w-auto object-contain ${b.invert ? 'brightness-0' : ''}`} />
                   </div>
                 ))}
               </motion.div>
@@ -408,18 +401,28 @@ export default function V3HDetail() {
               variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
               className="flex flex-wrap gap-6"
             >
-              {accessories.map((acc) => (
-                <motion.div
-                  key={acc.label}
-                  variants={item}
-                  className="bg-[#141414] border border-white/6 rounded-xl p-4 flex flex-col hover:border-orange-500/30 transition-colors w-[160px]"
-                >
-                  <p className="text-white text-[11px] font-semibold leading-snug mb-3 text-center">{acc.label}</p>
-                  <div className="flex items-center justify-center min-h-[60px]">
-                    <img src={acc.src} alt={acc.label} className="max-h-16 object-contain" />
-                  </div>
-                </motion.div>
-              ))}
+              {accessories.map((acc) => {
+                const selected = selectedAcc === acc.label;
+                return (
+                  <motion.div
+                    key={acc.label}
+                    variants={item}
+                    onClick={() => setSelectedAcc(selected ? null : acc.label)}
+                    className={`border rounded-xl p-4 flex flex-col cursor-pointer transition-all duration-200 w-[160px] ${
+                      selected
+                        ? 'bg-white border-orange-400 shadow-md'
+                        : 'bg-[#141414] border-white/6 hover:border-orange-500/30'
+                    }`}
+                  >
+                    <p className={`text-[11px] font-semibold leading-snug mb-3 text-center ${selected ? 'text-gray-900' : 'text-white'}`}>
+                      {acc.label}
+                    </p>
+                    <div className="flex items-center justify-center min-h-[60px]">
+                      <img src={acc.src} alt={acc.label} className="max-h-24 object-contain" />
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
@@ -474,18 +477,17 @@ export default function V3HDetail() {
           </motion.div>
 
           <motion.div
-            variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
           >
             {specCards.map((card) => (
-              <motion.div
+              <div
                 key={card.label}
-                variants={item}
                 className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-gray-300 transition-all"
               >
                 <p className="text-[11px] font-bold text-gray-900 mb-2 whitespace-pre-line leading-snug">{card.label}</p>
                 <p className="text-xs leading-relaxed whitespace-pre-line text-gray-900">{card.value}</p>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>
