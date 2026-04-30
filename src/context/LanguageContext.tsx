@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
-export type Language = 'en' | 'km';
+export type Language = 'en' | 'km' | 'th' | 'vi' | 'id' | 'ms' | 'zh';
 
 interface LanguageContextValue {
   language: Language;
@@ -13,8 +13,26 @@ const LanguageContext = createContext<LanguageContextValue>({
   setLanguage: () => {},
 });
 
+function applyLang(lang: Language) {
+  document.documentElement.lang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>(() => {
+    const stored = localStorage.getItem('pixel-lang') as Language | null;
+    return stored ?? 'en';
+  });
+
+  useEffect(() => {
+    applyLang(language);
+  }, [language]);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('pixel-lang', lang);
+  };
+
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
       {children}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import {
   CreditCard, Shield, Printer, Tag, Camera, Scan,
 } from 'lucide-react';
@@ -88,6 +89,10 @@ export default function V3HDetail() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>V3H Mobile Terminal | Pixel Hardware</title>
+        <meta name="description" content="The V3H is a compact mobile terminal with dual printing, barcode scanning, and Pixel OS 4.0 — built for retail and logistics." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ 1. HERO ━━━━━━━━━━━━━━━━ */}

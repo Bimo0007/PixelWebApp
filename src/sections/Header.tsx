@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 
 import categoriesData from '../data/products.json';
 import { useLanguage } from '../context/LanguageContext';
+import type { Language } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 // Product type
@@ -37,6 +38,11 @@ const productCategories: ProductCategory[] = (categoriesData as any[]).map((cat)
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'km', name: 'ខ្មែរ', flag: '🇰🇭' },
+  { code: 'th', name: 'ภาษาไทย', flag: '🇹🇭' },
+  { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳' },
+  { code: 'id', name: 'Bahasa Indonesia', flag: '🇮🇩' },
+  { code: 'ms', name: 'Bahasa Melayu', flag: '🇲🇾' },
+  { code: 'zh', name: '中文', flag: '🇨🇳' },
 ];
 
 export default function Header({ forceLight = false }: { forceLight?: boolean }) {
@@ -47,15 +53,19 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductMenuOpen, setIsProductMenuOpen] = useState(false);
+  const [isSolutionsMenuOpen, setIsSolutionsMenuOpen] = useState(false);
   const [isMobileProductOpen, setIsMobileProductOpen] = useState(false);
+  const [isMobileSolutionsOpen, setIsMobileSolutionsOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('cpad');
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
   const productMenuRef = useRef<HTMLDivElement>(null);
+  const solutionsMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const closeSolutionsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const openProductMenu = useCallback(() => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -64,6 +74,15 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
 
   const closeProductMenu = useCallback(() => {
     closeTimer.current = setTimeout(() => setIsProductMenuOpen(false), 120);
+  }, []);
+
+  const openSolutionsMenu = useCallback(() => {
+    if (closeSolutionsTimer.current) clearTimeout(closeSolutionsTimer.current);
+    setIsSolutionsMenuOpen(true);
+  }, []);
+
+  const closeSolutionsMenu = useCallback(() => {
+    closeSolutionsTimer.current = setTimeout(() => setIsSolutionsMenuOpen(false), 120);
   }, []);
 
   useEffect(() => {
@@ -94,6 +113,9 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
       if (productMenuRef.current && !productMenuRef.current.contains(event.target as Node)) {
         setIsProductMenuOpen(false);
       }
+      if (solutionsMenuRef.current && !solutionsMenuRef.current.contains(event.target as Node)) {
+        setIsSolutionsMenuOpen(false);
+      }
       if (languageMenuRef.current && !languageMenuRef.current.contains(event.target as Node)) {
         setIsLanguageMenuOpen(false);
       }
@@ -106,14 +128,14 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
   const currentLang = languages.find(l => l.code === language);
 
   // light = show white bg + dark text (when scrolled or forced)
-  const light = isScrolled || forceLight || isProductMenuOpen;
+  const light = isScrolled || forceLight || isProductMenuOpen || isSolutionsMenuOpen;
 
   return (
     <>
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{
-          y: isHidden && !isProductMenuOpen && !isMobileMenuOpen ? -100 : 0,
+          y: isHidden && !isProductMenuOpen && !isSolutionsMenuOpen && !isMobileMenuOpen ? -100 : 0,
           opacity: 1,
         }}
         transition={{ duration: 0.35, ease: 'easeInOut' }}
@@ -256,9 +278,94 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
                 </AnimatePresence>
               </div>
 
+              {/* Solutions Dropdown */}
+              <div
+                ref={solutionsMenuRef}
+                className="relative"
+                onMouseEnter={openSolutionsMenu}
+                onMouseLeave={closeSolutionsMenu}
+              >
+                <button
+                  className={`flex items-center px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                    light
+                      ? 'text-gray-700 hover:text-orange-500'
+                      : 'text-white/90 hover:text-white'
+                  }`}
+                >
+                  {t.solutions}
+                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isSolutionsMenuOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                <AnimatePresence>
+                  {isSolutionsMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute left-0 top-full mt-1 w-52 bg-white rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-gray-100 py-2"
+                      onMouseEnter={openSolutionsMenu}
+                      onMouseLeave={closeSolutionsMenu}
+                    >
+                      {[
+                        { label: t.solutionItems.fnb, hash: 'fnb' },
+                        { label: t.solutionItems.retail, hash: 'retail' },
+                        { label: t.solutionItems.logistics, hash: 'logistics' },
+                        { label: t.solutionItems.hospitality, hash: 'hospitality' },
+                        { label: t.solutionItems.healthcare, hash: 'healthcare' },
+                        { label: t.solutionItems.finance, hash: 'finance' },
+                      ].map((s) => (
+                        <Link
+                          key={s.hash}
+                          to="/solutions"
+                          onClick={() => setIsSolutionsMenuOpen(false)}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:text-orange-500 hover:bg-orange-50 transition-colors"
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                      <div className="border-t border-gray-100 mt-1 pt-1">
+                        <Link
+                          to="/solutions"
+                          onClick={() => setIsSolutionsMenuOpen(false)}
+                          className="flex items-center px-4 py-2 text-sm font-semibold text-orange-500 hover:bg-orange-50 transition-colors"
+                        >
+                          All Solutions
+                          <ChevronDown className="ml-1 h-3.5 w-3.5 -rotate-90" />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Partners */}
+              <Link
+                to="/partners"
+                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                  light
+                    ? 'text-gray-700 hover:text-orange-500'
+                    : 'text-white/90 hover:text-white'
+                }`}
+              >
+                {t.partners}
+              </Link>
+
+              {/* About */}
+              <Link
+                to="/about"
+                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                  light
+                    ? 'text-gray-700 hover:text-orange-500'
+                    : 'text-white/90 hover:text-white'
+                }`}
+              >
+                {t.about}
+              </Link>
+
               {/* Support */}
               <Link
-                to="/contact"
+                to="/support"
                 className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   light
                     ? 'text-gray-700 hover:text-orange-500'
@@ -298,7 +405,7 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
                         <button
                           key={lang.code}
                           onClick={() => {
-                            setLanguage(lang.code as 'en' | 'km');
+                            setLanguage(lang.code as Language);
                             setIsLanguageMenuOpen(false);
                           }}
                           className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-50 transition-colors flex items-center ${
@@ -391,9 +498,66 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
                     </AnimatePresence>
                   </div>
                   
+                  {/* Solutions mobile */}
+                  <div className="border-b border-gray-100 pb-2">
+                    <button
+                      onClick={() => setIsMobileSolutionsOpen(!isMobileSolutionsOpen)}
+                      className="w-full flex items-center justify-between py-3 text-sm font-semibold text-gray-900"
+                    >
+                      {t.solutions}
+                      <ChevronDown className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${isMobileSolutionsOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isMobileSolutionsOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          {[
+                            t.solutionItems.fnb,
+                            t.solutionItems.retail,
+                            t.solutionItems.logistics,
+                            t.solutionItems.hospitality,
+                            t.solutionItems.healthcare,
+                            t.solutionItems.finance,
+                          ].map((label) => (
+                            <Link
+                              key={label}
+                              to="/solutions"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="flex items-center gap-2 text-sm text-gray-600 py-2 pl-4 hover:text-orange-500 transition-colors"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0" />
+                              {label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
                   <Link
-                    to="/contact"
-                    className="block py-3 text-gray-700 hover:text-orange-500 border-b border-gray-100"
+                    to="/partners"
+                    className="block py-3 text-gray-700 hover:text-orange-500 border-b border-gray-100 text-sm font-semibold"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {t.partners}
+                  </Link>
+
+                  <Link
+                    to="/about"
+                    className="block py-3 text-gray-700 hover:text-orange-500 border-b border-gray-100 text-sm font-semibold"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {t.about}
+                  </Link>
+
+                  <Link
+                    to="/support"
+                    className="block py-3 text-gray-700 hover:text-orange-500 border-b border-gray-100 text-sm font-semibold"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {t.support}
@@ -408,7 +572,7 @@ export default function Header({ forceLight = false }: { forceLight?: boolean })
                       <button
                         key={lang.code}
                         onClick={() => {
-                          setLanguage(lang.code as 'en' | 'km');
+                          setLanguage(lang.code as Language);
                           setIsMobileMenuOpen(false);
                         }}
                         className={`w-full text-left py-2 text-sm flex items-center ${

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
@@ -76,6 +77,10 @@ const specCards: { label: string; value: string }[] = [
 export default function CashDrawerDetail() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>Max Cash Drawer | Pixel Hardware</title>
+        <meta name="description" content="Secure POS cash drawer compatible with all Pixel and SUNMI terminal systems." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━ */}

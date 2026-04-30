@@ -10,6 +10,71 @@ export default function Footer() {
   const { language } = useLanguage();
   const tf = translations[language].footer;
 
+  // Map footer link labels to their routes
+  const linkRoutes: Record<string, string> = {
+    // English
+    'Contact Us': '/contact',
+    'Purchase Inquiry': '/purchase-inquiry',
+    'About Us': '/about',
+    'Support Centre': '/support',
+    'Resources': '/resources',
+    'Partners': '/partners',
+    'Careers': '/careers',
+    'News': '/news',
+    'Warranty Policy': '/support',
+    // Khmer
+    'ទំនាក់ទំនងយើង': '/contact',
+    'សាកសួរការទិញ': '/purchase-inquiry',
+    'អំពីយើង': '/about',
+    'មជ្ឈមណ្ឌលជំនួយ': '/support',
+    'ធនធាន': '/resources',
+    'ដៃគូ': '/partners',
+    'ការងារ': '/careers',
+    'ព័ត៌មាន': '/news',
+    'គោលនយោបាយធានា': '/support',
+    // Thai
+    'ติดต่อเรา': '/contact',
+    'สอบถามการซื้อ': '/purchase-inquiry',
+    'เกี่ยวกับเรา': '/about',
+    'ศูนย์สนับสนุน': '/support',
+    'ทรัพยากร': '/resources',
+    'พันธมิตร': '/partners',
+    'ร่วมงานกับเรา': '/careers',
+    'ข่าวสาร': '/news',
+    // Vietnamese
+    'Liên hệ': '/contact',
+    'Hỏi mua hàng': '/purchase-inquiry',
+    'Giới thiệu': '/about',
+    'Trung tâm hỗ trợ': '/support',
+    'Tài nguyên': '/resources',
+    'Đối tác': '/partners',
+    'Tuyển dụng': '/careers',
+    'Tin tức': '/news',
+    // Bahasa Indonesia
+    'Hubungi Kami': '/contact',
+    'Pertanyaan Pembelian': '/purchase-inquiry',
+    'Tentang Kami': '/about',
+    'Pusat Dukungan': '/support',
+    'Sumber Daya': '/resources',
+    'Mitra': '/partners',
+    'Karir': '/careers',
+    'Berita': '/news',
+    // Bahasa Melayu
+    'Pusat Sokongan': '/support',
+    'Sumber': '/resources',
+    'Rakan': '/partners',
+    'Kerjaya': '/careers',
+    // Chinese Simplified
+    '联系我们': '/contact',
+    '购买咨询': '/purchase-inquiry',
+    '关于我们': '/about',
+    '支持中心': '/support',
+    '资源': '/resources',
+    '合作伙伴': '/partners',
+    '招聘': '/careers',
+    '新闻': '/news',
+  };
+
   const footerLinks = [
     { key: 'service', title: tf.service.title, links: tf.service.links },
     { key: 'about',   title: tf.about.title,   links: tf.about.links },
@@ -56,16 +121,8 @@ export default function Footer() {
               <ul className="space-y-3">
                 {section.links.map((label) => (
                   <li key={label}>
-                    {label === 'Contact Us' || label === 'ទំនាក់ទំនងយើង' ? (
-                      <Link to="/contact" className="text-gray-300 hover:text-white transition-colors text-sm">
-                        {label}
-                      </Link>
-                    ) : label === 'Purchase Inquiry' || label === 'សាកសួរការទិញ' ? (
-                      <Link to="/purchase-inquiry" className="text-gray-300 hover:text-white transition-colors text-sm">
-                        {label}
-                      </Link>
-                    ) : label === 'About Us' || label === 'អំពីយើង' ? (
-                      <Link to="/about" className="text-gray-300 hover:text-white transition-colors text-sm">
+                    {linkRoutes[label] ? (
+                      <Link to={linkRoutes[label]} className="text-gray-300 hover:text-white transition-colors text-sm">
                         {label}
                       </Link>
                     ) : (
@@ -93,18 +150,18 @@ export default function Footer() {
               {tf.copyright}
             </p>
             <div className="flex items-center gap-6">
-              <a
-                href="#"
+              <Link
+                to="/terms"
                 className="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 {tf.legal}
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/privacy-policy"
                 className="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 {tf.privacy}
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>

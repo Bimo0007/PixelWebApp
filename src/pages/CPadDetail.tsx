@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import {
   Wifi, Bluetooth, CreditCard, Camera, Battery, Shield,
 } from 'lucide-react';
@@ -83,6 +84,10 @@ export default function CPadDetail() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>CPad — Smart Commercial Tablet | Pixel Hardware</title>
+        <meta name="description" content="The CPad is a modular 10.1&quot; smart commercial tablet with NFC payment, Pixel OS 4.0, and a rich accessory ecosystem." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ 1. HERO ━━━━━━━━━━━━━━━━ */}

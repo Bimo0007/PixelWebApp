@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
@@ -84,6 +85,10 @@ const specCards: { label: string; value: string }[] = [
 export default function PrinterDetail() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>80MM Thermal Printer | Pixel Hardware</title>
+        <meta name="description" content="High-speed 80mm thermal receipt printer compatible with all Pixel and SUNMI POS systems." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━ */}

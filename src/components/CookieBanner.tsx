@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
@@ -40,9 +41,9 @@ export default function CookieBanner() {
               <div className="flex-1">
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {tc.message}{' '}
-                  <a href="#" className="text-orange-500 hover:text-orange-600 underline">
+                  <Link to="/privacy-policy" className="text-orange-500 hover:text-orange-600 underline">
                     {tc.policy}
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>

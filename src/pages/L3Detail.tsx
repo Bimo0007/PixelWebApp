@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Battery, Shield, Camera, Scan, CreditCard, Fingerprint } from 'lucide-react';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
@@ -74,6 +75,10 @@ const specCards: { label: string; value: string; orange?: boolean }[] = [
 export default function L3Detail() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>L3 Handheld Computer | Pixel Hardware</title>
+        <meta name="description" content="The L3 is a rugged handheld computer with RFID scanning, long battery life, and enterprise-grade durability." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ 1. HERO ━━━━━━━━━━━━━━━━ */}

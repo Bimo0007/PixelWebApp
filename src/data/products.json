@@ -3,7 +3,7 @@
     "id": "cpad",
     "name": "CPad",
     "description": "CPad redefines smart terminals for business with an innovative modular concept. The entire series includes a variety of sizes and designs, complemented by a rich ecosystem of magnetic accessories, allowing for flexible combinations to adapt to various business scenarios.",
-    "heroImage": "/images/cpad-hero.jpg",
+    "heroImage": "/images/Cpad.png",
     "products": [
       {
         "id": "cpad",
@@ -53,7 +53,7 @@
     "id": "interactive-display",
     "name": "Interactive Display",
     "description": "Experience responsive touch and HD screens in various sizes, perfect for retail, F&B, and more. Streamline service and enhance information delivery for your business's digital transformation.",
-    "heroImage": "/images/display-hero.jpg",
+    "heroImage": "/images/Flex.png",
     "products": [
       {
         "id": "flex-3",
@@ -111,7 +111,7 @@
     "id": "mobile",
     "name": "Mobile",
     "description": "Over the years, Pixel mobile devices, being applicable to the retail, restaurant, logistics and manufacturing businesses, have helped business owners to accelerate their digital transformation in store operations.",
-    "heroImage": "/images/mobile-hero.jpg",
+    "heroImage": "/images/Moble.png",
     "subCategories": [
       {
         "name": "V Series",
@@ -220,7 +220,7 @@
     "id": "desktop",
     "name": "Desktop",
     "description": "Pixel desktop terminals combine powerful performance with elegant design, providing reliable solutions for businesses of all sizes. From compact counters to full-service stations, we have the right solution for you.",
-    "heroImage": "/images/desktop-hero.jpg",
+    "heroImage": "/images/Desktop.png",
     "subCategories": [
       {
         "name": "D Series",
@@ -232,7 +232,7 @@
             "badge": "New",
             "description": "Desktop Terminal",
             "tagline": "Professional-grade performance.",
-            "image": "/assets/D3/Frontview .png",
+            "image": "/assets/D3/1-Front view.png",
             "hoverImage": "/assets/D3/D3 PRO with UI.png"
           }
         ]
@@ -258,7 +258,7 @@
     "id": "accessories",
     "name": "Accessories",
     "description": "Complete your POS setup with our range of accessories. From printers to cash drawers, we have everything you need to run your business smoothly.",
-    "heroImage": "/images/accessories-hero.jpg",
+    "heroImage": "/images/Accessories.png",
     "products": [
       {
         "id": "printer",
@@ -269,7 +269,7 @@
       },
       {
         "id": "cash-drawer",
-        "name": "Max Cash Drawe",
+        "name": "Max Cash Drawer",
         "description": "POS Cash Drawer",
         "tagline": "Secure cash management.",
         "image": "/assets/Drawer/Drawer.png"

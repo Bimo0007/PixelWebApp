@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Mail, Phone, MapPin, MessageSquare, Handshake, HeadphonesIcon } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
@@ -85,6 +86,10 @@ const socials = [
 export default function ContactUs() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>Contact Us | Pixel Hardware</title>
+        <meta name="description" content="Get in touch with Pixel Hardware for product enquiries, support, and partnership opportunities." />
+      </Helmet>
       <Header forceLight />
 
       {/* ── HERO ── */}

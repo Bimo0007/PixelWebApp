@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
@@ -77,6 +78,10 @@ export default function Flex3Detail() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>FLEX 3 Interactive Display | Pixel Hardware</title>
+        <meta name="description" content="The FLEX 3 is an 18.5&quot;–27&quot; interactive touch display designed for digital signage, self-service kiosks, and customer-facing retail." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ 1. HERO ━━━━━━━━━━━━━━━━ */}

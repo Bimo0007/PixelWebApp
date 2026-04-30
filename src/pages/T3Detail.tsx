@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
@@ -87,6 +88,10 @@ export default function T3Detail() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>T3 All-in-One Touch Terminal | Pixel Hardware</title>
+        <meta name="description" content="The T3 is a powerful all-in-one touch POS terminal with a large display, integrated printer, and full peripheral connectivity." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ 1. HERO ━━━━━━━━━━━━━━━━ */}

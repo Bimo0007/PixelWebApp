@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx tsc:*)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(cd /d)",
+      "Bash(find \"pos-system/pos-system\" -path \"*/node_modules\" -prune -o -type f \\\\\\( -name \"*Context*\" -o -name \"*Provider*\" -o -name \"*Auth*\" \\\\\\) -print)",
+      "Bash(npm install *)",
+      "WebFetch(domain:www.sunmi.com)"
+    ]
+  }
+}

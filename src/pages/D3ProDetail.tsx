@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CookieBanner from '../components/CookieBanner';
@@ -85,6 +86,10 @@ export default function D3ProDetail() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>D3 Pro Desktop Terminal | Pixel Hardware</title>
+        <meta name="description" content="The D3 Pro is a high-performance desktop POS terminal with a sleek design, fast processor, and wide peripheral support." />
+      </Helmet>
       <Header />
 
       {/* ━━━━━━━━━━━━━━━━ 1. HERO ━━━━━━━━━━━━━━━━ */}

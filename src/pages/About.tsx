@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Globe2, Headphones, Handshake } from 'lucide-react';
 import Header from '../sections/Header';
@@ -54,6 +55,10 @@ const stats = [
 export default function About() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>About Us | Pixel Hardware</title>
+        <meta name="description" content="Pixel Hardware is a leading SUNMI distributor across Southeast Asia, delivering smart POS and payment solutions since day one." />
+      </Helmet>
       <Header forceLight />
 
       {/* ── HERO ── */}

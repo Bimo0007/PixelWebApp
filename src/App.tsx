@@ -1,20 +1,36 @@
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
+import ErrorBoundary from './components/ErrorBoundary';
+import WhatsAppButton from './components/WhatsAppButton';
+
+// Eagerly load the home page for fastest first paint
 import Home from './pages/Home';
-import Products from './pages/Products';
-import ProductDetail from './pages/ProductDetail';
-import V3HDetail from './pages/V3HDetail';
-import L3Detail from './pages/L3Detail';
-import CPadDetail from './pages/CPadDetail';
-import Flex3Detail from './pages/Flex3Detail';
-import D3ProDetail from './pages/D3ProDetail';
-import T3Detail from './pages/T3Detail';
-import CashDrawerDetail from './pages/CashDrawerDetail';
-import PrinterDetail from './pages/PrinterDetail';
-import PurchaseInquiry from './pages/PurchaseInquiry';
-import ContactUs from './pages/ContactUs';
-import About from './pages/About';
+
+// Lazy load all other pages to reduce initial bundle size
+const Products        = lazy(() => import('./pages/Products'));
+const ProductDetail   = lazy(() => import('./pages/ProductDetail'));
+const V3HDetail       = lazy(() => import('./pages/V3HDetail'));
+const L3Detail        = lazy(() => import('./pages/L3Detail'));
+const CPadDetail      = lazy(() => import('./pages/CPadDetail'));
+const Flex3Detail     = lazy(() => import('./pages/Flex3Detail'));
+const D3ProDetail     = lazy(() => import('./pages/D3ProDetail'));
+const T3Detail        = lazy(() => import('./pages/T3Detail'));
+const CashDrawerDetail = lazy(() => import('./pages/CashDrawerDetail'));
+const PrinterDetail   = lazy(() => import('./pages/PrinterDetail'));
+const PurchaseInquiry = lazy(() => import('./pages/PurchaseInquiry'));
+const ContactUs       = lazy(() => import('./pages/ContactUs'));
+const About           = lazy(() => import('./pages/About'));
+const Solutions       = lazy(() => import('./pages/Solutions'));
+const Partners        = lazy(() => import('./pages/Partners'));
+const SupportCenter   = lazy(() => import('./pages/SupportCenter'));
+const PrivacyPolicy   = lazy(() => import('./pages/PrivacyPolicy'));
+const Terms           = lazy(() => import('./pages/Terms'));
+const Resources       = lazy(() => import('./pages/Resources'));
+const Careers         = lazy(() => import('./pages/Careers'));
+const News            = lazy(() => import('./pages/News'));
+const NotFound        = lazy(() => import('./pages/NotFound'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,27 +40,41 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <LanguageProvider>
-      <HashRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/product/v3h" element={<V3HDetail />} />
-          <Route path="/product/l3" element={<L3Detail />} />
-          <Route path="/product/cpad" element={<CPadDetail />} />
-          <Route path="/product/flex-3" element={<Flex3Detail />} />
-          <Route path="/product/d3-pro" element={<D3ProDetail />} />
-          <Route path="/product/t3" element={<T3Detail />} />
-          <Route path="/product/cash-drawer" element={<CashDrawerDetail />} />
-          <Route path="/product/printer" element={<PrinterDetail />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/purchase-inquiry" element={<PurchaseInquiry />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </HashRouter>
-    </LanguageProvider>
+    <ErrorBoundary>
+      <LanguageProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Suspense fallback={<div className="min-h-screen bg-[#0a0a0a]" />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/product/v3h" element={<V3HDetail />} />
+              <Route path="/product/l3" element={<L3Detail />} />
+              <Route path="/product/cpad" element={<CPadDetail />} />
+              <Route path="/product/flex-3" element={<Flex3Detail />} />
+              <Route path="/product/d3-pro" element={<D3ProDetail />} />
+              <Route path="/product/t3" element={<T3Detail />} />
+              <Route path="/product/cash-drawer" element={<CashDrawerDetail />} />
+              <Route path="/product/printer" element={<PrinterDetail />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/purchase-inquiry" element={<PurchaseInquiry />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/solutions" element={<Solutions />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/support" element={<SupportCenter />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/news" element={<News />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <WhatsAppButton />
+        </BrowserRouter>
+      </LanguageProvider>
+    </ErrorBoundary>
   );
 }
 
