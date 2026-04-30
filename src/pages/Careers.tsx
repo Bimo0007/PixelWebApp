@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { MapPin, Clock, ArrowRight, Zap, Globe2, Users, TrendingUp } from 'lucide-react';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';

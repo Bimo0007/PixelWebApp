@@ -110,7 +110,7 @@ export default function D3ProDetail() {
               {/* Badge logos */}
               <motion.div variants={item} className="flex flex-wrap gap-3">
                 {[
-                  { src: '/assets/L3/Efficiency unleashed from start to sale/os.png',  invert: true },
+                  { src: '/assets/L3/Efficiency unleashed from start to sale/os.png',   invert: true },
                   { src: '/assets/L3/Efficiency unleashed from start to sale/dmp.png', invert: true },
                   { src: '/assets/L3/Efficiency unleashed from start to sale/gms.png', invert: false },
                 ].map((b) => (
@@ -272,7 +272,7 @@ export default function D3ProDetail() {
               variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
               className="grid grid-cols-2 gap-4"
             >
-              {galleryViews.slice(1, 5).map((v, i) => (
+              {galleryViews.slice(1, 5).map((v) => (
                 <motion.div
                   key={v.label}
                   variants={item}

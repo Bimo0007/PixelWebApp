@@ -14,7 +14,7 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.6, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] as any },
   }),
 };
 
@@ -25,7 +25,7 @@ const stagger = {
 
 const item = {
   hidden: { opacity: 0, y: 20, scale: 0.97 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as any } },
 };
 
 export default function ProductDetail() {
