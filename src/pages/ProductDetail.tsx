@@ -134,16 +134,16 @@ export default function ProductDetail() {
             </motion.div>
             
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} className="grid md:grid-cols-3 gap-8">
-              {displayItems.map((item, idx: number) => (
+              {displayItems.map((displayItem, idx: number) => (
                 <motion.div key={idx} variants={item} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                  {item.image && (
+                  {displayItem.image && (
                      <div className="h-40 mb-6 flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
-                       <img src={item.image} alt={item.title || item.name} className="h-full w-full object-cover" />
+                       <img src={displayItem.image} alt={displayItem.title || displayItem.name} className="h-full w-full object-cover" />
                      </div>
                   )}
-                  {item.label && <p className="text-xs font-bold text-orange-500 uppercase tracking-wider mb-2">{item.label}</p>}
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title || item.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                  {displayItem.label && <p className="text-xs font-bold text-orange-500 uppercase tracking-wider mb-2">{displayItem.label}</p>}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{displayItem.title || displayItem.name}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{displayItem.description}</p>
                 </motion.div>
               ))}
             </motion.div>

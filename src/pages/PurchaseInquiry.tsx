@@ -47,7 +47,7 @@ const inquirySchema = z.object({
   businessType: z.string().min(1, 'Please select a business type'),
   companySize: z.string().min(1, 'Please select a company size'),
   industry: z.string().min(1, 'Please select an industry'),
-  talkedToRep: z.enum(['yes', 'no'] as const, { required_error: 'Please select an option' }),
+  talkedToRep: z.enum(['yes', 'no'] as const, { message: 'Please select an option' }),
   repName: z.string().optional(),
   notes: z.string().optional(),
   agreePrivacy: z.boolean().refine((val) => val === true, {

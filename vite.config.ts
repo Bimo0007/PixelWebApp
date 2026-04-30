@@ -11,9 +11,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    historyApiFallback: true,
-  },
   preview: {
     port: 4173,
   },
